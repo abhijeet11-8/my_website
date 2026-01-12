@@ -1,0 +1,21 @@
+{
+  "name": "personal-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export",
+    "import-cv": "node scripts/import-cv.js"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "katex": "^0.16.27",
+    "marked": "^11.1.1",
+    "nodemailer": "^6.9.3",
+    "next": "^14.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
