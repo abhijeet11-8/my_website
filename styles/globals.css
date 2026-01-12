@@ -9,7 +9,8 @@ html, body {
   padding: 0;
   background: #0a0a0a;
   /* If you add a background image at public/images/bg.jpg it will be used here */
-  background-image: url('/images/bg.jpg');
+  /* Use relative path so exported HTML resolves the image under the repo subpath */
+  background-image: url('./images/bg.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;

@@ -3,10 +3,11 @@ import profile from '../content/profile.json';
 import Link from 'next/link';
 
 export default function CV() {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
   return (
     <div style={{ maxWidth: 900, margin: '3rem auto', padding: '0 24px' }}>
       <header style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
-        <img src="/profile.jpg" alt="profile" style={{ width: 96, height: 96, borderRadius: 999 }} />
+        <img src={`${base}/profile.jpg`} alt="profile" style={{ width: 96, height: 96, borderRadius: 999 }} />
         <div>
           <h1>{cv.name || profile.name}</h1>
           <p className="lead">{cv.headline || profile.headline}</p>

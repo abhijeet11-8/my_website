@@ -30,11 +30,18 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Post({ html, meta }) {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  // prefix src="/..." image paths in rendered HTML so images resolve under repo basePath
+  const adjustedHtml = html.replace(/src="\/(?!_next)/g, `src="${base}/`);
+  // also prefix meta.cover if present
+  const adjustedMeta = { ...meta };
+  if (adjustedMeta.cover && adjustedMeta.cover.startsWith('/')) adjustedMeta.cover = `${base}${adjustedMeta.cover}`;
+
   return (
     <article>
-      <h1>{meta.title}</h1>
-      <p>{meta.date}</p>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <h1>{adjustedMeta.title}</h1>
+      <p>{adjustedMeta.date}</p>
+      <div dangerouslySetInnerHTML={{ __html: adjustedHtml }} />
     </article>
   );
 }

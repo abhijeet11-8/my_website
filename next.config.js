@@ -9,6 +9,9 @@ const nextConfig = {
   reactStrictMode: true,
   basePath: basePath,
   assetPrefix: assetPrefix,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: assetPrefix
+  },
   // exportTrailingSlash helps GitHub Pages serve static files from subpaths
   trailingSlash: true,
 };

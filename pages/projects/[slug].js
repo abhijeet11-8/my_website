@@ -36,7 +36,11 @@ export async function getStaticProps({ params }) {
 }
 
 export default function ProjectPage({ meta, html }) {
-  const slides = meta.slides || null;
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  // prefix slide paths if they start with /
+  const slides = meta.slides ? (meta.slides.startsWith('/') ? `${base}${meta.slides}` : `${base}/${meta.slides}`) : null;
+  // prefix image paths in rendered html
+  const adjustedHtml = html.replace(/src="\/(?!_next)/g, `src="${base}/`);
   return (
     <article className="thoughts" style={{ maxWidth: '900px', margin: '3rem auto' }}>
       <h1>{meta.title}</h1>
@@ -61,7 +65,7 @@ export default function ProjectPage({ meta, html }) {
         </div>
       ) : null}
 
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <div dangerouslySetInnerHTML={{ __html: adjustedHtml }} />
     </article>
   );
 }

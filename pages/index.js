@@ -3,11 +3,12 @@ import Link from "next/link";
 
 export default function Home() {
   const profileName = cv.name || cv.fullName || '';
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
   return (
     <div className="profile-container">
       <div className="hero">
         <div className="text-panel">
-          <img src="/profile.jpg" alt="Profile" className="avatar-small" />
+          <img src={`${base}/profile.jpg`} alt="Profile" className="avatar-small" />
           <div>
             <h1>{profileName}</h1>
             <p className="lead">{cv.headline}</p>
@@ -16,12 +17,12 @@ export default function Home() {
         <div className="links" style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
           {cv.github && (
             <a href={cv.github} target="_blank" rel="noopener noreferrer">
-              <img src="/icons/github.svg" alt="GitHub" className="icon-social" />
+              <img src={`${base}/icons/github.svg`} alt="GitHub" className="icon-social" />
             </a>
           )}
           {cv.linkedin && (
             <a href={cv.linkedin} target="_blank" rel="noopener noreferrer">
-              <img src="/icons/linkedin.svg" alt="LinkedIn" className="icon-social" />
+              <img src={`${base}/icons/linkedin.svg`} alt="LinkedIn" className="icon-social" />
             </a>
           )}
         </div>

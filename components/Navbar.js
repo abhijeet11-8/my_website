@@ -8,6 +8,7 @@ function slugify(title) {
 }
 
 export default function Navbar() {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const [open, setOpen] = useState(false);
   const [thoughts, setThoughts] = useState(null);
 
@@ -74,10 +75,10 @@ export default function Navbar() {
 
             <div className="overlay-footer">
               <a href={cv.github || profile.github} target="_blank" rel="noopener noreferrer">
-                <img src="/icons/github.svg" alt="GitHub" className="icon-social" />
+                <img src={`${base}/icons/github.svg`} alt="GitHub" className="icon-social" />
               </a>
               <a href={cv.linkedin || profile.linkedin} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '12px' }}>
-                <img src="/icons/linkedin.svg" alt="LinkedIn" className="icon-social" />
+                <img src={`${base}/icons/linkedin.svg`} alt="LinkedIn" className="icon-social" />
               </a>
             </div>
           </div>
