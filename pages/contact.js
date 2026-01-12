@@ -1,65 +1,31 @@
-import { useState } from "react";
+import profile from "../content/profile.json";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState(null);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setStatus("sending");
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
-      });
-      if (res.ok) {
-        setStatus('sent');
-        setForm({ name: '', email: '', message: '' });
-      } else {
-        const data = await res.json();
-        setStatus(data?.error || 'error');
-      }
-    } catch (err) {
-      setStatus('error');
-    }
-  }
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || profile.gmail || 'vikramabhijeet68@gmail.com';
 
   return (
     <div className="contact-container">
       <h1>Contact</h1>
-      <p>If you'd like to reach out about projects or collaborations, send me a message below.</p>
+      <p>Connect with me:</p>
 
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <input
-          placeholder="Your name"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          required
-        />
+      <div className="contact-icons">
+        {profile.github && (
+          <a href={profile.github} target="_blank" rel="noopener noreferrer">
+            <img src={`${base}/icons/github.svg`} alt="GitHub" className="contact-icon" />
+          </a>
+        )}
 
-        <input
-          placeholder="Your email"
-          type="email"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-          required
-        />
+        {profile.linkedin && (
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+            <img src={`${base}/icons/linkedin.svg`} alt="LinkedIn" className="contact-icon" />
+          </a>
+        )}
 
-        <textarea
-          placeholder="Message"
-          rows={6}
-          value={form.message}
-          onChange={(e) => setForm({ ...form, message: e.target.value })}
-          required
-        />
-
-        <button type="submit">Send</button>
-      </form>
-
-      {status === 'sending' && <p>Sending…</p>}
-      {status === 'sent' && <p>Thanks — your message was sent.</p>}
-      {status === 'error' && <p>Sorry — something went wrong.</p>}
+        <a href={`mailto:${email}`}>
+          <img src={`${base}/icons/mail.svg`} alt="Email" className="contact-icon icon-mail" />
+        </a>
+      </div>
     </div>
   );
 }

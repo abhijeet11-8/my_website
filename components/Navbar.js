@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import profile from "../content/profile.json";
-import cv from "../content/cv.json";
 import staticThoughts from "../content/thoughts.json";
 
 function slugify(title) {
@@ -61,6 +60,7 @@ export default function Navbar() {
             <ul className="overlay-list">
                 <li><Link href="/" onClick={() => setOpen(false)}>Home</Link></li>
                 <li><Link href="/contact" onClick={() => setOpen(false)}>Contact</Link></li>
+                <li><Link href="/interests" onClick={() => setOpen(false)}>Interests</Link></li>
 
                 <li className="overlay-section">Thoughts</li>
                 {thoughts && thoughts.length > 0 ? (
@@ -76,22 +76,31 @@ export default function Navbar() {
                 )}
 
                 <li className="overlay-section">Projects</li>
-                {cv.projects && cv.projects.map(p => (
+                {profile.projects && profile.projects.map(p => (
                   <li key={p.title}>
                     <Link href={p.link || `/projects/${slugify(p.title)}`} onClick={() => setOpen(false)}>
                       {p.title}
                     </Link>
                   </li>
                 ))}
+
+                
+
+                
               </ul>
 
             <div className="overlay-footer">
-              <a href={cv.github || profile.github} target="_blank" rel="noopener noreferrer">
+              <a href={profile.github} target="_blank" rel="noopener noreferrer">
                 <img src={`${base}/icons/github.svg`} alt="GitHub" className="icon-social" />
               </a>
-              <a href={cv.linkedin || profile.linkedin} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '12px' }}>
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '12px' }}>
                 <img src={`${base}/icons/linkedin.svg`} alt="LinkedIn" className="icon-social" />
               </a>
+              {profile.gmail && (
+                <a href={`mailto:${profile.gmail}`} style={{ marginLeft: '12px' }}>
+                  <img src={`${base}/icons/mail.svg`} alt="Email" className="icon-social icon-mail" />
+                </a>
+              )}
             </div>
           </div>
         </div>

@@ -3,11 +3,9 @@ import "../styles/globals.css";
 import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
+  // No background image — keep site solid black.
   useEffect(() => {
-    const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
-    const bg = `${base}/images/bg.jpg`;
-    // set CSS variable so globals.css can use it
-    document.documentElement.style.setProperty('--site-bg', `url('${bg}')`);
+    // intentionally left blank
   }, []);
 
   return (

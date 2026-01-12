@@ -1,33 +1,31 @@
 {
   "name": "Abhijeet Vikram",
-  "headline": "Data Science • Deep Learning • Neurobiology • Non-Linear Dynamics",
+  "headline": "Sustainable AI • Neuromorphic AI • Nuronal Dynamics",
   "interests": [
-    "Spiking Neural Networks",
-    "Mathematical Finance",
-    "Deep Learning Theory",
-    "Neuroscience-inspired AI"
+    "Spiking Neural Networks"
   ],
   "education": [
     {
       "institute": "IISER Pune",
       "degree": "BS-MS",
       "field": "Data Science & Mathematics",
-      "year": "2022 – Present"
+      "year": "2022 – Present (2027 expected)"
     }
   ],
   "linkedin": "https://www.linkedin.com/in/abhijeet-vikram-2b9739328/",
-  "github": "https://github.com/abhijeet11-8"
-  ,
+  "github": "https://github.com/abhijeet11-8",
+  "gmail": "vikramabhijeet68@gmail.com",
+
   "projects": [
     {
-      "title": "SpikingNet-Research",
+      "title": "SHARE-SSM",
       "summary": "Exploring learning algorithms for spiking neural networks and computational neuroscience-inspired models.",
       "link": "/projects/spikingnet-research"
     },
     {
-      "title": "Quant-Fin-Models",
-      "summary": "Quantitative finance experiments and risk-modelling tools built with Python and JAX.",
-      "link": "/projects/quant-fin-models"
+      "title": "Diffusion model with deterministic noising",
+      "summary": "Replaced stochastic noise in diffusion models with deterministic chaotic dynamics to make sampling and training more energy- and compute-efficient.",
+      "link": "/projects/diffusion-model-deterministic-noising"
     }
   ]
 }
