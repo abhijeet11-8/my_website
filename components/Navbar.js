@@ -16,10 +16,21 @@ export default function Navbar() {
   useEffect(() => {
     if (!open || thoughts) return;
     let cancelled = false;
-    fetch('/api/thoughts')
-      .then(r => r.json())
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    const apiUrl = `${basePath}/api/thoughts`;
+    fetch(apiUrl)
+      .then(r => {
+        if (!r.ok) throw new Error('no api');
+        return r.json();
+      })
       .then(data => {
-        if (!cancelled) setThoughts(data);
+        if (cancelled) return;
+        // fallback to static thoughts if API returned empty
+        if (!data || (Array.isArray(data) && data.length === 0)) {
+          setThoughts(staticThoughts || []);
+        } else {
+          setThoughts(data);
+        }
       })
       .catch(() => {
         if (!cancelled) setThoughts(staticThoughts || []);
