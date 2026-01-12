@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import profile from "../content/profile.json";
 import cv from "../content/cv.json";
+import staticThoughts from "../content/thoughts.json";
 
 function slugify(title) {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -21,7 +22,7 @@ export default function Navbar() {
         if (!cancelled) setThoughts(data);
       })
       .catch(() => {
-        if (!cancelled) setThoughts([]);
+        if (!cancelled) setThoughts(staticThoughts || []);
       });
     return () => { cancelled = true; };
   }, [open, thoughts]);
