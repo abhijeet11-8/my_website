@@ -141,7 +141,7 @@ main > * {
 /* translucent panel behind textual content on home only */
 .profile-container .hero .text-panel {
   background: rgba(0,0,0,0.55);
-  padding: 20px 22px;
+  padding: 28px 28px;
   border-radius: 12px;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
