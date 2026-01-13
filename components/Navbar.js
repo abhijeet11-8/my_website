@@ -64,13 +64,23 @@ export default function Navbar() {
 
                 <li className="overlay-section">Thoughts</li>
                 {thoughts && thoughts.length > 0 ? (
-                  thoughts.map(t => (
-                    <li key={t.slug}>
-                      <Link href={`/thoughts/${t.slug}`} onClick={() => setOpen(false)}>
-                        {t.title}{t.date ? <span className="muted"> — {t.date}</span> : null}
-                      </Link>
-                    </li>
-                  ))
+                  (() => {
+                    // dedupe by slug, sort by date desc, then render titles only
+                    const map = new Map();
+                    thoughts.forEach(t => map.set(t.slug, t));
+                    const list = Array.from(map.values()).sort((a, b) => {
+                      const da = a.date ? new Date(a.date) : new Date(0);
+                      const db = b.date ? new Date(b.date) : new Date(0);
+                      return db - da;
+                    });
+                    return list.map(t => (
+                      <li key={t.slug}>
+                        <Link href={`/thoughts/${t.slug}`} onClick={() => setOpen(false)}>
+                          {t.title}
+                        </Link>
+                      </li>
+                    ));
+                  })()
                 ) : (
                   <li><span className="muted">Loading…</span></li>
                 )}
