@@ -14,6 +14,9 @@ export async function getStaticProps() {
     };
   });
 
+  // show newest posts first
+  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   return { props: { posts } };
 }
 
